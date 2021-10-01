@@ -44,3 +44,23 @@ public class TesteController {
 }
 ```
 Ou seja, para acessar a requisição específica, a url ficaria: http://localhost:8080/teste/oi
+Na classe acima, podemos dizer que temos um endpoint.
+
+ResponseEntity - Utilizado para retornar uma resposta mais completa. Representa toda resposta HTTP. Você pode controlar: status(http status), cabeçalho(header) e corpo(body).
+```
+@RestController
+@RequestMapping("/cursos")
+public class CursoController {
+	
+	@Autowired
+	private CursoService cursoService;
+	
+	@GetMapping
+	private ResponseEntity<List<Curso>> getCursos() {
+		List<Curso> cursosList = cursoService.getCurso();
+		
+		return ResponseEntity.ok().body(cursosList);
+	}
+
+}
+```
