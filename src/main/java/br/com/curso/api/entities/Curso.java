@@ -21,6 +21,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 @Table(name = "curso_faculdade")
@@ -39,10 +41,12 @@ public class Curso {
 	
 	@Column(name = "dt_criacao")
 	@CreationTimestamp
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataCriacao;
 		
 	@Column(name = "dt_atualizacao")
 	@UpdateTimestamp
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime dataAtualizacao;
 	
 	@Column(name = "usuario")
