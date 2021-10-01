@@ -22,7 +22,7 @@ public class Aluno {
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "curso_id")
+	@JoinColumn(name = "id_curso")
 	private Curso curso;
 
 	public Aluno() {

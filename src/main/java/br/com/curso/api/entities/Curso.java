@@ -16,8 +16,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;                                             
-
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,7 +28,7 @@ public class Curso {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "curso_id")
+	@Column(name = "id_curso")
 	private Integer id;
 
 	@Column(name = "nome_curso", nullable = false)
@@ -49,13 +48,13 @@ public class Curso {
 	@Column(name = "usuario")
 	@NotNull(message = "O campo usuário não pode ser nulo")
 	@NotBlank(message = "O valor do campo usuário não pode branco")
-	private String usuario;
-	
-	@OneToMany(mappedBy = "curso")	
-	List<Aluno> alunos = new ArrayList<>();
+	private String usuario;	
 	
 	@Transient
 	private BigDecimal calculoValorCurso;
+	
+	@OneToMany(mappedBy = "curso")	
+	private List<Aluno> alunos = new ArrayList<>();
 	
 	@PrePersist
 	private void antesDePersistirDados() {
@@ -123,7 +122,7 @@ public class Curso {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
-	}
+	}		
 
 	public BigDecimal getCalculoValorCurso() {
 		return calculoValorCurso;
@@ -131,6 +130,14 @@ public class Curso {
 
 	public void setCalculoValorCurso(BigDecimal calculoValorCurso) {
 		this.calculoValorCurso = calculoValorCurso;
+	}
+	
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 
 	@Override
