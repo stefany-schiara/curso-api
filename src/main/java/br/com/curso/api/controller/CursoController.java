@@ -3,6 +3,7 @@ package br.com.curso.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +19,10 @@ public class CursoController {
 	private CursoService cursoService;
 	
 	@GetMapping
-	private List<Curso> getCursos() {
-		return cursoService.getCurso();
+	private ResponseEntity<List<Curso>> getCursos() {
+		List<Curso> cursosList = cursoService.getCurso();
+		
+		return ResponseEntity.ok().body(cursosList);
 	}
 
 }
