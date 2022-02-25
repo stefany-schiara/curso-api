@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import br.com.curso.api.entities.dto.CursoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.curso.api.entities.Curso;
 import br.com.curso.api.services.CursoService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/cursos")
 public class CursoController {
 
-	private static String URI = "/cursos/salvar/";
+	//private static String URI = "/cursos/salvar/";
 
 	@Autowired
 	private CursoService cursoService;
@@ -31,10 +34,11 @@ public class CursoController {
 	}
 
 	@PostMapping("/salvar")
-	public ResponseEntity<Curso> salvarCurso(@RequestBody Curso curso) throws URISyntaxException {
-		Curso novoCurso = cursoService.save(curso);
+	public ResponseEntity<Curso> salvarCurso(@Valid @RequestBody CursoDTO curso) throws URISyntaxException {
+		//Curso novoCurso = cursoService.save(curso);
 
-		return ResponseEntity.created(new URI(URI + novoCurso.getId())).body(novoCurso);
+		//return ResponseEntity.created(new URI(URI + novoCurso.getId())).body(novoCurso);
+		return null;
 
 	}
 

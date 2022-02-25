@@ -1,5 +1,6 @@
 package br.com.curso.api.entities;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "grade")
-public class GradeCurricular {
+public class GradeCurricular implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "id_grade")
