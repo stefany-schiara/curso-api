@@ -64,5 +64,28 @@ public class CursoController {
 
 }
 ```
+---------------------------------------
+
+Para definir perfis diferentes, por exemplo, 
+executar o  sistema apontando para ambientes diferentes(dev, uat, prd)
+
+Devemos criar um arquivo properties para cada perfil. ex:
+
+application-dev.properties
+application-uat.properties
+application-prd.properties
+
+o arquivo application.properties é o principal do projeto e é nele que será setado
+para qual arquivo deverá apontar.
+
+o application.properties ficaria assim:
+
+```
+spring.profiles.active=dev
+```
+
+É possivel verificar qual profile está sendo executado no console ao startar o projeto:
+
+![img.png](img.png)
 
 
