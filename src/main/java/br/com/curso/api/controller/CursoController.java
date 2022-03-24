@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import br.com.curso.api.entities.dto.CursoDTO;
+import br.com.curso.api.mapper.CursoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,13 @@ import javax.validation.Valid;
 @RequestMapping("/cursos")
 public class CursoController {
 
-	//private static String URI = "/cursos/salvar/";
+	private static String URI_SALVAR = "/cursos/salvar/";
 
 	@Autowired
 	private CursoService cursoService;
+
+	@Autowired
+	private CursoMapper mapper;
 
 	@GetMapping
 	public ResponseEntity<List<Curso>> getCursos() {
@@ -34,11 +38,11 @@ public class CursoController {
 	}
 
 	@PostMapping("/salvar")
-	public ResponseEntity<Curso> salvarCurso(@Valid @RequestBody CursoDTO curso) throws URISyntaxException {
-		//Curso novoCurso = cursoService.save(curso);
+	public ResponseEntity<Curso> salvarCurso(@Valid @RequestBody CursoDTO cursoDTO) throws URISyntaxException {
+		Curso novoCurso = cursoService.save(mapper.toEntity(cursoDTO));
 
-		//return ResponseEntity.created(new URI(URI + novoCurso.getId())).body(novoCurso);
-		return null;
+		return ResponseEntity.created(new URI(URI_SALVAR + novoCurso.getId())).body(novoCurso);
+
 
 	}
 

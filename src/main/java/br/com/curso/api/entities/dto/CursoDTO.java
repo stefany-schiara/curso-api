@@ -3,6 +3,7 @@ package br.com.curso.api.entities.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class CursoDTO implements Serializable {
@@ -13,6 +14,7 @@ public class CursoDTO implements Serializable {
 
     @NotNull
     @NotEmpty(message = "nome não pode ser vazio")
+    @Size(min = 5, max = 20)
     private String nome;
 
     @NotBlank

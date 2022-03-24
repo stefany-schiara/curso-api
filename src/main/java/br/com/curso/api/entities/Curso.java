@@ -63,15 +63,15 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy = "curso")	
 	private List<Aluno> alunos = new ArrayList<>();
 	
-	@PrePersist
-	private void antesDePersistirDados() {
-		this.usuario = "Admin";
-	}
-	
-	@PostPersist
-	private void aposPersistirDados() {
-		this.nome = this.nome + " POST";
-	}	
+//	@PrePersist
+//	private void antesDePersistirDados() {
+//		this.usuario = "Admin";
+//	}
+//
+//	@PostPersist
+//	private void aposPersistirDados() {
+//		this.nome = this.nome + " POST";
+//	}
 
 	public Curso() {
 		super();
