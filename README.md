@@ -88,4 +88,35 @@ spring.profiles.active=dev
 
 ![img.png](img.png)
 
+__________________________________________________________________________
+@Profile - Anotação para definir em que profile(dev, uat, prd, local) uma classe é executada. 
+Para definir uma classe que será executada ao rodar o programa de acordo com o profile, podemos criar uma classe
+da seguinte maneira:
+
+```
+@Profile("local")
+@Component
+public class TestDatabase implements CommandLineRunner {
+
+    @Autowired
+    CursoRepository cursoRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        Curso curso1 = new Curso("Graduação em TI", "Exatas");
+        Curso curso2 = new Curso("Graduação em Economia", "Humanas");
+        Curso curso3 = new Curso("Graduacao em Administração", "Humanas");
+        Curso curso4 = new Curso("Graduação em Educação Física", "Humanas");
+
+        cursoRepository.save(curso1);
+        cursoRepository.save(curso2);
+        cursoRepository.save(curso3);
+        cursoRepository.save(curso4);
+    }
+}
+```
+
+Ao rodar a aplicação setando profile local, essa classe será executada, realizando insert na tabela.
+
 
