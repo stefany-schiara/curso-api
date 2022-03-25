@@ -119,4 +119,11 @@ public class TestDatabase implements CommandLineRunner {
 
 Ao rodar a aplicação setando profile local, essa classe será executada, realizando insert na tabela.
 
+strategy de criacao (cria tabelas caso não exista ao rodar o projeto)
+```
+spring.jpa.hibernate.ddl-auto=create
+```
+
+
+
 
