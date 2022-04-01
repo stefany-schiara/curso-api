@@ -128,6 +128,39 @@ Para não ficar criando as tabelas todas as vezes, basta setar desta forma:
 spring.jpa.hibernate.ddl-auto=none
 ```
 
+@BeforeAll - Ao anotar um método na classe de teste com essa annotation, o método será executado
+antes de tudo o que estiver na classe.
+Ex:
+```
+@BeforeAll
+    void antesDeTudo() {
+        System.out.println("Classe de teste Cuso iniciando...");
+    }
+```
+Quando utilizada essa annotation, o método deverá ser static, ou a classe deverá ser anotada com @TestInstance(Lifecycle.PER_CLASS)
+isso quer dizer que que o ciclo de vida será executado por classe.
+Ex:
+```
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class CursoTest {
+}
+```
+
+
+
+@BeforeEach - Ao anotar um método na classe de teste com essa annotation, antes de cada método executado
+o método anotado será executado.
+Ex: 
+```
+ @BeforeEach
+    void antesDeCadaMetodo(){
+        System.out.println("Antes de cada método...");
+        curso = new Curso();
+    }
+```
+
+
+
 
 
 
