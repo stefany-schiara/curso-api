@@ -1,28 +1,17 @@
 package br.com.curso.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PostPersist;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -41,6 +30,9 @@ public class Curso implements Serializable {
 	
 	@Column(name = "area", nullable = false)
 	private String area;
+
+	@Column
+	private BigDecimal valorCurso;
 	
 	@Column(name = "dt_criacao")
 	@CreationTimestamp
@@ -75,6 +67,7 @@ public class Curso implements Serializable {
 
 	public Curso() {
 		super();
+		this.valorCurso = new BigDecimal(0);
 	}
 
 	public Curso(String nome, String area) {
@@ -85,6 +78,14 @@ public class Curso implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public BigDecimal getValorCurso() {
+		return valorCurso;
+	}
+
+	public void setValorCurso(BigDecimal valorCurso) {
+		this.valorCurso = valorCurso;
 	}
 
 	public void setId(Integer id) {

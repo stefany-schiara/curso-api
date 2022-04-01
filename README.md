@@ -119,10 +119,15 @@ public class TestDatabase implements CommandLineRunner {
 
 Ao rodar a aplicação setando profile local, essa classe será executada, realizando insert na tabela.
 
-strategy de criacao (cria tabelas caso não exista ao rodar o projeto)
+strategy de criacao (cria tabelas ao rodar o projeto)
 ```
 spring.jpa.hibernate.ddl-auto=create
 ```
+Para não ficar criando as tabelas todas as vezes, basta setar desta forma:
+```
+spring.jpa.hibernate.ddl-auto=none
+```
+
 
 
 
