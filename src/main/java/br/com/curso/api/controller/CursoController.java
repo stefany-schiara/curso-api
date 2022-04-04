@@ -8,11 +8,7 @@ import br.com.curso.api.entities.dto.CursoDTO;
 import br.com.curso.api.mapper.CursoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.curso.api.entities.Curso;
 import br.com.curso.api.services.CursoService;
@@ -32,9 +28,16 @@ public class CursoController {
 	private CursoMapper mapper;
 
 	@GetMapping
-	public ResponseEntity<List<Curso>> getCursos() {
+	public ResponseEntity<List<Curso>> getAllCursos() {
 		List<Curso> cursosList = cursoService.getCurso();
 		return ResponseEntity.ok().body(cursosList);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Curso> getCurso(@PathVariable Integer id){
+		Curso curso = cursoService.getCursoById(id);
+
+		return ResponseEntity.ok().body(curso);
 	}
 
 	@PostMapping("/salvar")

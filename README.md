@@ -179,6 +179,36 @@ Ex:
     }
 ```
 
+@PathVariable - Utilizado para passar um valor através da URL da aplicação. 
+Ex:
+```
+@GetMapping("/{id}")
+	public ResponseEntity<Curso> getCurso(@PathVariable Integer id){
+		Curso curso = cursoService.getCursoById(id);
+
+		return ResponseEntity.ok().body(curso);
+	}
+```
+
+findById - Utilizado para buscar um elemento através do id.
+Para utilizar esse método nativo do JPA, ele exige um tipo Optional no retorno.
+Basta realizar na camada de serviço da seguinte forma.
+Ex:
+```
+@Service
+public class CursoServiceImpl implements CursoService {
+
+    @Override
+        public Curso getCursoById(Integer id) {
+            Optional<Curso> curso = cursoRepository.findById(id);
+            return curso.orElse(null);
+        }
+	}
+```
+Esse orElse é um metódo que vai retornar ou um valor, no caso um objeto do tipo curso,
+caso não encontre nada com o id passado, retorna nulo.
+
+
 
 
 
