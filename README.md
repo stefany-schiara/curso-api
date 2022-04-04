@@ -159,8 +159,25 @@ Ex:
     }
 ```
 
+@AfterEach - Ao anotar um método na classe de teste com essa annotation, após cada método executado
+o método anotado será executado.
+Ex:
+```
+ @AfterEach
+    void depoisDeCadaMetodo(){
+        System.out.println("[USANDO JUNIT] - Nome do Curso " + curso.getNome());
+    }
+```
 
-
+@AfterAll - Ao anotar um método na classe de teste com essa annotation, no final da execução de toda classe
+o método anotado será executado.
+Ex:
+```
+@AfterAll
+    void depoisDeTudo(){
+        System.out.println("[USANDO JUNIT] - Classe de teste finalizada...");
+    }
+```
 
 
 
