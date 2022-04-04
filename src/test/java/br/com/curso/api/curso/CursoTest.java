@@ -19,36 +19,46 @@ class CursoTest {
 
     @BeforeAll
     void antesDeTudo() {
-        System.out.println("Classe de teste Cuso iniciando...");
+        System.out.println("[USANDO JUNIT] - Classe de teste Curso iniciando...");
     }
 
     @BeforeEach
     void antesDeCadaMetodo(){
-        System.out.println("Antes de cada método...");
+        System.out.println("[USANDO JUNIT] - Antes de cada método...");
         curso = new Curso();
+    }
+
+    @AfterEach
+    void depoisDeCadaMetodo(){
+        System.out.println("[USANDO JUNIT] - Nome do Curso " + curso.getNome());
+    }
+
+    @AfterAll
+    void depoisDeTudo(){
+        System.out.println("[USANDO JUNIT] - Classe de teste finalizada...");
     }
 
     @Test
     void testarCursoNaoVazio() {
-        System.out.println("método 1");
+        System.out.println("[USANDO JUNIT] - testarCursoNaoVazio");
         assertNotNull(curso);
     }
 
     @Test
     void valorDoCursoNaoNulo() {
-        System.out.println("método 2");
+        System.out.println("[USANDO JUNIT] - valorDoCursoNaoNulo");
         assertNotNull(curso.getValorCurso());
     }
 
     @Test
     void testarNovoCursoValorZero() {
-        System.out.println("método 3");
+        System.out.println("[USANDO JUNIT] - testarNovoCursoValorZero");
         Assertions.assertEquals(new BigDecimal(0), curso.getValorCurso());
     }
 
     @Test
     void testarNovoCursoSemAlunos() {
-        System.out.println("método 4");
+        System.out.println("[USANDO JUNIT] - testarNovoCursoSemAlunos");
         Assertions.assertTrue(curso.getAlunos().isEmpty());
     }
 
