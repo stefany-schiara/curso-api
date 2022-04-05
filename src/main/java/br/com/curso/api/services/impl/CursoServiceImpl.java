@@ -27,7 +27,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public Curso getCursoById(Integer id) {
+    public Curso findById(Integer id) {
         Optional<Curso> curso = cursoRepository.findById(id);
         return curso.orElse(null);
     }
@@ -37,4 +37,13 @@ public class CursoServiceImpl implements CursoService {
         return cursoRepository.findByNomeContaining(nomeCurso);
     }
 
+    @Override
+    public void updateCurso(Curso curso) {
+        Curso cursoASerAtualizado = this.findById(curso.getId());
+
+        cursoASerAtualizado.setNome(curso.getNome());
+        cursoASerAtualizado.setArea(curso.getArea());
+
+        cursoRepository.save(cursoASerAtualizado);
+    }
 }

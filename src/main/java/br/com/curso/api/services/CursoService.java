@@ -8,7 +8,8 @@ public interface CursoService {
 	
 	public List<Curso> getCurso();
 	public Curso save(Curso curso);
-	public Curso getCursoById(Integer id);
+	public Curso findById(Integer id);
 	public List<Curso> getCursoByName(String nomeCurso);
+	public void updateCurso(Curso curso);
 
 }
