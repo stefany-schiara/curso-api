@@ -227,4 +227,41 @@ Ex:
 URL do endpoint ficará assim: http://localhost:8080/cursos/pesquisaCurso?nomeCurso=http://localhost:8080/cursos/pesquisaCurso?nomeCurso=Educação
 
 
+@PutMapping - Utilizado para criar um endpoint para realizar update em registros. 
+Ex:
+```
+@PutMapping("alterar/{id}")
+	public ResponseEntity<Curso> alterarCurso(@Valid @RequestBody CursoDTO cursoDTO, @PathVariable Integer id) throws URISyntaxException {
 
+		Curso cursoAlterado = mapper.toEntity(cursoDTO);
+		cursoAlterado.setId(id);
+		cursoService.updateCurso(cursoAlterado);
+
+		return ResponseEntity.noContent().build();
+	}
+```
+URL do endpoint ficará assim: http://localhost:8080/cursos/alterar/1
+Nós passamos o id do registro, pois vamos buscar o registro antes de alterá-lo.
+Para passar os novos dados do registro, temos que passar o body. Todo método post(inclusão) e put(atualização)
+possuem body. No caso abaixo, vou mudar nome e área de um curso
+```
+{
+   "nome": "Curso de id 1 alterado",
+   "area": "Exatas"
+}
+```
+
+A camada de serviço ficará da seguinte maneira
+```
+@Override
+public void updateCurso(Curso curso) {
+Curso cursoASerAtualizado = this.findById(curso.getId());
+
+        cursoASerAtualizado.setNome(curso.getNome());
+        cursoASerAtualizado.setArea(curso.getArea());
+
+        cursoRepository.save(cursoASerAtualizado);
+    }
+```
+
+Ou seja, busca o curso existente e atualiza com os novos dados.
