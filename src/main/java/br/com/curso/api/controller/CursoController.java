@@ -40,13 +40,18 @@ public class CursoController {
 		return ResponseEntity.ok().body(curso);
 	}
 
+	@GetMapping("/pesquisaCurso")
+	public ResponseEntity<List<Curso>> getCursosByNome(@RequestParam String nomeCurso){
+		List<Curso> curso = cursoService.getCursoByName(nomeCurso);
+
+		return ResponseEntity.ok().body(curso);
+	}
+
 	@PostMapping("/salvar")
 	public ResponseEntity<Curso> salvarCurso(@Valid @RequestBody CursoDTO cursoDTO) throws URISyntaxException {
 		Curso novoCurso = cursoService.save(mapper.toEntity(cursoDTO));
 
 		return ResponseEntity.created(new URI(URI_SALVAR + novoCurso.getId())).body(novoCurso);
-
-
 	}
 
 }

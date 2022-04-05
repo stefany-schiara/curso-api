@@ -13,23 +13,28 @@ import br.com.curso.api.services.CursoService;
 @Service
 public class CursoServiceImpl implements CursoService {
 
-	@Autowired
-	private CursoRepository cursoRepository;
-	
-	@Override
-	public List<Curso> getCurso() {
-		return cursoRepository.findAll();
-	}
+    @Autowired
+    private CursoRepository cursoRepository;
 
-	@Override
-	public Curso save(Curso curso) {
-		return cursoRepository.save(curso);
-	}
+    @Override
+    public List<Curso> getCurso() {
+        return cursoRepository.findAll();
+    }
 
-	@Override
-	public Curso getCursoById(Integer id) {
-		Optional<Curso> curso = cursoRepository.findById(id);
-		return curso.orElse(null);
-	}
+    @Override
+    public Curso save(Curso curso) {
+        return cursoRepository.save(curso);
+    }
+
+    @Override
+    public Curso getCursoById(Integer id) {
+        Optional<Curso> curso = cursoRepository.findById(id);
+        return curso.orElse(null);
+    }
+
+    @Override
+    public List<Curso> getCursoByName(String nomeCurso) {
+        return cursoRepository.findByNomeContaining(nomeCurso);
+    }
 
 }

@@ -189,6 +189,8 @@ Ex:
 		return ResponseEntity.ok().body(curso);
 	}
 ```
+URL do endpoint ficará assim: http://localhost:8080/cursos/1
+
 
 findById - Utilizado para buscar um elemento através do id.
 Para utilizar esse método nativo do JPA, ele exige um tipo Optional no retorno.
@@ -209,6 +211,20 @@ Esse orElse é um metódo que vai retornar ou um valor, no caso um objeto do tip
 caso não encontre nada com o id passado, retorna nulo.
 
 
+
+@RequestParam - Utilizado para passar um valor por parametro através da URL da aplicação.
+Diferente do @PathVariable que passamos o valor diretamente na url, neste caso, passamos 
+o símbolo ? e tudo que vier após, são parametros, porem, passamos nomeParametro=valorParametro.
+Ex:
+```
+@GetMapping("/pesquisaCurso")
+	public ResponseEntity<List<Curso>> getCursosByNome(@RequestParam String nomeCurso){
+		List<Curso> curso = cursoService.getCursoByName(nomeCurso);
+
+		return ResponseEntity.ok().body(curso);
+	}
+```
+URL do endpoint ficará assim: http://localhost:8080/cursos/pesquisaCurso?nomeCurso=http://localhost:8080/cursos/pesquisaCurso?nomeCurso=Educação
 
 
 
