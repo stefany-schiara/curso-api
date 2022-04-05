@@ -7,6 +7,7 @@ import java.util.List;
 import br.com.curso.api.entities.dto.CursoDTO;
 import br.com.curso.api.mapper.CursoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,6 +60,12 @@ public class CursoController {
 		cursoService.updateCurso(cursoAlterado);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<HttpStatus> deletarCurso(@PathVariable Integer id) throws URISyntaxException {
+		cursoService.deleteById(id);
+		return ResponseEntity.ok(HttpStatus.OK);
 	}
 
 }

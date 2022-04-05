@@ -263,5 +263,20 @@ Curso cursoASerAtualizado = this.findById(curso.getId());
         cursoRepository.save(cursoASerAtualizado);
     }
 ```
+Ou seja, busca um curso existente e atualiza com os novos dados.
 
-Ou seja, busca o curso existente e atualiza com os novos dados.
+@DeleteMapping - Utilizado para criar um endpoint para realizar deleção de registros.
+Ex:
+```
+@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<HttpStatus> deletarCurso(@PathVariable Integer id) throws URISyntaxException {
+		cursoService.deleteById(id);
+		return ResponseEntity.ok(HttpStatus.OK);
+	}
+```
+URL do endpoint ficará assim: http://localhost:8080/cursos/deletar/1
+
+Lembrando que para cada tipo de requisição Http, devemos passar na api que chama os endpoints
+por exemplo o Postman, ao criar o request, temos que setar o tipo de verbo(get, put, post, delete) 
+na ferramenta. Caso chamarmos um endpoint e setarmos o verbo errado, o sistema apresentará o erro:
+405: Method not allowed.

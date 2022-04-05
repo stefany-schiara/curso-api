@@ -46,4 +46,9 @@ public class CursoServiceImpl implements CursoService {
 
         cursoRepository.save(cursoASerAtualizado);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        cursoRepository.deleteById(id);
+    }
 }
