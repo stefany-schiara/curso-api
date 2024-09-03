@@ -65,6 +65,7 @@ public class CursoController {
 	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<HttpStatus> deletarCurso(@PathVariable Integer id) throws URISyntaxException {
 		cursoService.deleteById(id);
+		System.out.println("");
 		return ResponseEntity.ok(HttpStatus.OK);
 	}
 
